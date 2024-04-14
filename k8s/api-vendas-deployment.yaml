@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-vendas-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: api-vendas
+  template:
+    metadata:
+      labels:
+        app: api-vendas
+    spec:
+      containers:
+      - name: api-vendas
+        image: gabrielainfnet/api-vendas:1.0
+        ports:
+        - containerPort: 8080
