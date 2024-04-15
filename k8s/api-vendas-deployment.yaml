@@ -17,3 +17,16 @@ spec:
         image: gabrielainfnet/api-vendas:1.0
         ports:
         - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /api-vendas/actuator/health/readiness
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api-vendas/actuator/health/liveness
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 10
+      restartPolicy: Always
